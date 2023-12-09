@@ -1,0 +1,125 @@
+{
+    "name": "Plume",
+    "options": {
+        "bundleIdPrefix": "uz.akhmedovgg",
+        "generateEmptyDirectories": true
+    },
+    "packages": {
+        "Wormholy": {
+            "url": "https://github.com/akhmedovgg/wormholy",
+            "from": "1.6.5"
+        },
+        "Swinject": {
+            "url": "https://github.com/Swinject/Swinject",
+            "from": "2.8.4"
+        },
+        "RswiftLibrary": {
+            "url": "https://github.com/mac-cain13/R.swift",
+            "from": "7.4.0"
+        },
+        "Atributika": {
+            "url": "https://github.com/psharanda/Atributika",
+            "from": "5.0.2"
+        },
+        "Get": {
+            "url": "https://github.com/kean/Get",
+            "from": "2.1.6"
+        },
+    },
+    "targets": {
+        "Plume": {
+            "type": "application",
+            "platform": "iOS",
+            "deploymentTarget": "16.0",
+            "entitlements": {
+                "path": "Plume/Entitlements/Plume.entitlements",
+                "properties": {
+                    "aps-environment": "development",
+                    "com.apple.developer.applesignin": ["Default"],
+                }
+            },
+            "settings": {
+                "base": {
+                    "PRODUCT_BUNDLE_IDENTIFIER": "uz.akhmedovgg.plume",
+                    "DEVELOPMENT_TEAM": "8XKHWWA38H"
+                },
+                "attributes": {
+                    "SystemCapabilities": {
+                        "com.apple.Push": {
+                            "enabled": 1
+                        },
+                        "com.apple.developer.applesignin": {
+                            "enabled": 1
+                        },
+                    }
+                }
+            },
+            "dependencies": [
+                {
+                    "package": "Wormholy",
+                },
+                {
+                    "package": "Swinject",
+                },
+                {
+                    "package": "RswiftLibrary",
+                },
+                {
+                    "package": "Atributika",
+                },
+                {
+                    "package": "Get",
+                },
+            ],
+            "sources": [
+                "Plume",
+                "TestFlight"
+            ],
+            "info": {
+                "path": "Plume/Metadata/Info.plist",
+                "properties": {
+                    "CFBundleName": "Plume",
+                    "CFBundleVersion": "1",
+                    "CFBundleShortVersionString": "1.0.0",
+                    "UILaunchStoryboardName": "LaunchScreen",
+                    "UISupportedInterfaceOrientations": [
+                        "UIInterfaceOrientationPortrait"
+                    ],
+                    "UIRequiresFullScreen": true,
+                    "ITSAppUsesNonExemptEncryption": false,
+                    "UIAppFonts": [
+                        "Urbanist-Black.ttf",
+                        "Urbanist-BlackItalic.ttf",
+                        "Urbanist-Bold.ttf",
+                        "Urbanist-BoldItalic.ttf",
+                        "Urbanist-ExtraBold.ttf",
+                        "Urbanist-ExtraBoldItalic.ttf",
+                        "Urbanist-ExtraLight.ttf",
+                        "Urbanist-ExtraLightItalic.ttf",
+                        "Urbanist-Italic.ttf",
+                        "Urbanist-Light.ttf",
+                        "Urbanist-LightItalic.ttf",
+                        "Urbanist-Medium.ttf",
+                        "Urbanist-MediumItalic.ttf",
+                        "Urbanist-Regular.ttf",
+                        "Urbanist-SemiBold.ttf",
+                        "Urbanist-SemiBoldItalic.ttf",
+                        "Urbanist-Thin.ttf",
+                        "Urbanist-ThinItalic.ttf",
+
+                    ],
+                }
+            },
+            "preBuildScripts": [
+                {
+                    "name": "[RS] (Debug) Resource generator",
+                    "script": "if [ \"${CONFIGURATION}\" = \"Debug\" ]; then\n\t/opt/homebrew/bin/rswift generate \"$SRCROOT/Plume/Generated/R.generated.swift\"\nfi",
+                    "outputFiles": [
+                        "$SRCROOT/Plume/Generated/R.generated.swift"
+                    ],
+                    "basedOnDependencyAnalysis": false,
+                }
+            ]
+        }
+    }
+}
